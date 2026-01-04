@@ -14,7 +14,7 @@ public class Student {
         
         while (loggedIn) {
             System.out.println("===================================================");
-            System.out.println("                    STUDENTS MENU"); 
+            System.out.println("                  STUDENTS MENU"); 
             System.out.println("===================================================\n");
             System.out.println("[STUDENT INFORMATION]\n");
             System.out.println("Student Name\t: " + name);
@@ -33,19 +33,13 @@ public class Student {
             
             switch (choice) {
                 case "1":
-                    System.out.println("\n=== Register Course ===");
-                    System.out.println("Functionality coming soon!");
-                    System.out.println("Would allow student to register for available courses.");
+                   RegisterCourse.register(matricNo, scanner);
                     break;
                 case "2":
-                    System.out.println("\n=== Drop Course ===");
-                    System.out.println("Functionality coming soon!");
-                    System.out.println("Would allow student to drop currently registered courses.");
+                    DropCourse.drop(matricNo, scanner);
                     break;
                 case "3":
-                    System.out.println("\n=== View Registered Courses ===");
-                    System.out.println("Functionality coming soon!");
-                    System.out.println("Would display all courses the student is registered for.");
+                    ViewRegisteredCourse.view(matricNo);
                     break;
                 case "4":
                     System.out.println("\n=== View Grades & CGPA ===");
