@@ -16,15 +16,14 @@ public class Main {
         boolean running = true;
         
         while (running) {
-            System.out.println("===================================================\n" +
-                               "\t   SCSE1224: ADVANCED PROGRAMMING\n" +
-                               "\t       --- Group Project ---\n\n" +
-                               "    >> COURSE MARK & GRADE MANAGEMENT SYSTEM <<\n" +
-                               "===================================================\n");
-            
+            System.out.println("=======================================================\n");
+            System.out.println("         COURSE MARK & GRADE MANAGEMENT SYSTEM");
+            System.out.println("\n=======================================================");
+            System.out.println(">> Main Menu");
+            System.out.println("-------------------------------------------------------\n");
             System.out.println("[1] User Login");
             System.out.println("[2] Exit Program");
-            System.out.println("\n---------------------------------------------------");
+            System.out.println("\n-------------------------------------------------------");
             System.out.print("Enter your choice (1-2): ");
             
             String choice = scanner.nextLine();
@@ -42,7 +41,7 @@ public class Main {
                     
                 default:
                     System.out.println("\nInvalid choice! Please enter 1 or 2.\n");
-                    System.out.println("\nPress Enter to continue...");
+                    System.out.println("Press Enter to continue...");
                     scanner.nextLine();
                     clearScreen();       
             }
@@ -52,24 +51,23 @@ public class Main {
     }
     
     private static void showLoginPage(Scanner scanner) {
-        System.out.println("===================================================");
-        System.out.println("    >> COURSE MARK & GRADE MANAGEMENT SYSTEM <<\n");
-        System.out.println("\t\t--- USER LOGIN ---");
-        System.out.println("===================================================\n");
-        
-        System.out.print(">> Enter your username and password.\n\n");
-        System.out.print("Enter Username: ");
+        System.out.println("=======================================================\n");
+        System.out.println("         COURSE MARK & GRADE MANAGEMENT SYSTEM");
+        System.out.println("\n=======================================================");
+        System.out.println(">> Main Menu >> User Login");
+        System.out.println("-------------------------------------------------------\n");
+        System.out.println("[*] Enter your username and Password");
+        System.out.print("\nUsername : ");
         String username = scanner.nextLine();
-        System.out.print("Enter Password: ");
+        System.out.print("\nPassword : ");
         String password = scanner.nextLine();
+        System.out.println("\n-------------------------------------------------------");
         
         // Student Authentication
         boolean isStudent = authenticateUser("csv_database/Students.csv", username, password, "student");
         
         if (isStudent) {
-            System.out.println("\n----------------------------------------------------------------");
-            System.out.println("Login successful! Welcome Student: " + currentUserFullName + "!");
-            System.out.println("----------------------------------------------------------------");
+            System.out.println("Login successful!");
             System.out.println("\nPress Enter to continue...");
             scanner.nextLine();
             clearScreen();
@@ -80,9 +78,7 @@ public class Main {
             boolean isLecturer = authenticateUser("csv_database/Lecturers.csv", username, password, "lecturer");
             
             if (isLecturer) {
-                System.out.println("\n----------------------------------------------------------------");
-                System.out.println("Login successful! Welcome Lecturer: " + currentUserFullName + "!");
-                System.out.println("----------------------------------------------------------------");
+                System.out.println("Login successful!");
                 System.out.println("\nPress Enter to continue...");
                 scanner.nextLine();
                 clearScreen();
@@ -93,18 +89,14 @@ public class Main {
                 boolean isAdmin = authenticateUser("csv_database/Admin.csv", username, password, "admin");
                 
                 if (isAdmin) {
-                    System.out.println("\n----------------------------------------------------------------");
-                    System.out.println("Login successful! Welcome Admin: " + currentUserFullName + "!");
-                    System.out.println("----------------------------------------------------------------");
+                    System.out.println("Login successful!");
                     System.out.println("\nPress Enter to continue...");
                     scanner.nextLine();
                     clearScreen();
                     Admin admin = new Admin(currentUserFullName, currentUserId);
                     admin.showMenu(scanner);
                 } else {
-                    System.out.println("\n----------------------------------------------------------------");
                     System.out.println("Error: Invalid username or password. Please try again.");
-                    System.out.println("----------------------------------------------------------------");
                     System.out.println("\nPress Enter to continue...");
                     scanner.nextLine();
                     clearScreen();
