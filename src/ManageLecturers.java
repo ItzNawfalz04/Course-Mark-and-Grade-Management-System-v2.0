@@ -13,7 +13,6 @@ public class ManageLecturers {
 
     private static final String LECTURER_FILE = "csv_database/Lecturers.csv";
     private static final String COURSE_ASSG_FILE = "csv_database/CourseAssg.csv";
-    private static final String COURSES_FILE = "csv_database/Courses.csv";
 
     public static void showMenu(Scanner scanner) {
         boolean running = true;
@@ -101,7 +100,7 @@ public class ManageLecturers {
             return;
         }
 
-        if (isUsernameExists(username)) {
+        if (ManageStudents.isUsernameExists(username)) {
             System.out.println("\nError: Username already exists!");
             ManageStudents.pause(scanner);
             return;
@@ -223,7 +222,7 @@ public class ManageLecturers {
             }
 
             // If changed, check uniqueness
-            if (!username.equalsIgnoreCase(oldUsername) && isUsernameExists(username)) {
+            if (!username.equalsIgnoreCase(oldUsername) && ManageStudents.isUsernameExists(username)) {
                 System.out.println("\nError: Username already exists! Please enter a different username.\n");
                 continue; // stay here and re-enter
             }
@@ -478,7 +477,7 @@ public class ManageLecturers {
         }
 
         // Load course information for mapping
-        Map<String, String[]> coursesMap = loadCoursesMap();
+        Map<String, String[]> coursesMap = ManageCourses.loadCoursesMap();
 
         // Display all lecturers with their assigned courses
         int lecturerCount = 0;
@@ -535,59 +534,5 @@ public class ManageLecturers {
         
         System.out.println("Press Enter to go back...");
         scanner.nextLine();
-    }
-
-    // Helper method to load courses into a map (key: course code, value: [course name, credit hour])
-    private static Map<String, String[]> loadCoursesMap() {
-        Map<String, String[]> coursesMap = new HashMap<>();
-        
-        try (BufferedReader br = new BufferedReader(new FileReader(COURSES_FILE))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                line = line.replace("\uFEFF", "").trim();
-                if (line.isEmpty()) continue;
-
-                String[] data = line.split(",");
-                if (data.length >= 3) {
-                    String courseName = data[0].trim();
-                    String courseCode = data[1].trim();
-                    String creditHour = data[2].trim();
-                    
-                    // Store as array: [course name, credit hour]
-                    coursesMap.put(courseCode, new String[]{courseName, creditHour});
-                }
-            }
-        } catch (IOException e) {
-            System.out.println("Error reading Courses.csv for mapping");
-        }
-        
-        return coursesMap;
-    }
-
-    // Username Check (same as student version - checks across all user files)
-    private static boolean isUsernameExists(String username) {
-        return checkFileForUsername("csv_database/Admin.csv", username) ||
-               checkFileForUsername("csv_database/Lecturers.csv", username) ||
-               checkFileForUsername("csv_database/Students.csv", username);
-    }
-
-    private static boolean checkFileForUsername(String filename, String username) {
-        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                line = line.replace("\uFEFF", "").trim();
-                if (line.isEmpty()) continue;
-
-                String[] data = line.split(",");
-                if (data.length >= 3) {
-                    if (data[2].trim().equalsIgnoreCase(username)) {
-                        return true;
-                    }
-                }
-            }
-        } catch (IOException e) {
-            System.out.println("Error reading file: " + filename);
-        }
-        return false;
     }
 }

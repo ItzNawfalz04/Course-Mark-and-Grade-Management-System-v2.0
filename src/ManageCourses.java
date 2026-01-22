@@ -640,7 +640,7 @@ public class ManageCourses {
     }
 
     // Helper method to load courses into a map (key: course code, value: [course name, credit hour])
-    private static Map<String, String[]> loadCoursesMap() {
+    public static Map<String, String[]> loadCoursesMap() {
         Map<String, String[]> coursesMap = new HashMap<>();
         
         try (BufferedReader br = new BufferedReader(new FileReader(COURSES_FILE))) {

@@ -428,7 +428,7 @@ public class ManageStudents {
     }
 
     // Username Check (checks across all user files)
-    private static boolean isUsernameExists(String username) {
+    public static boolean isUsernameExists(String username) {
         return checkFileForUsername("csv_database/Admin.csv", username) ||
                checkFileForUsername("csv_database/Lecturers.csv", username) ||
                checkFileForUsername("csv_database/Students.csv", username);
