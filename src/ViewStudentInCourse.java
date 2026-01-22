@@ -8,14 +8,16 @@ public class ViewStudentInCourse {
 
     public static void view(String lecturerWorkId, Scanner scanner) {
         
-        System.out.println("\n\n--------------------------------------------------------------------------");
-        System.out.println("\n                          VIEW STUDENTS IN COURSE                         ");
-        
+        System.out.println("--------------------------------------------------------------------------");
+        System.out.println("                          VIEW STUDENTS IN COURSE                         ");
+        System.out.println("--------------------------------------------------------------------------"); 
+
         // 1. Get Assigned Course Code
-        List<String> myCourses = AssignedCourse.displayAndGetCourses(lecturerWorkId);
+        List<String> myCourses = ViewAssignedCourse.displayAndGetCourses(lecturerWorkId);
 
         if (myCourses.isEmpty()) return;
-
+        
+        System.out.println("0.     Back"); // Manual Back option
         System.out.print("\nEnter number to view students (or 0 to back): ");
         int choice;
         try {
@@ -80,9 +82,8 @@ public class ViewStudentInCourse {
             System.out.println("No students found in this course file.");
             return;
         }
-
+        
         // 3. Read Students.csv to match names and print Table
-        // --------------------------------------------------------
         System.out.println("\nList of Students in " + selectedCourseCode + ":");
         System.out.println("-------------------------------------------------------------------------------------------------");
         // Header Table

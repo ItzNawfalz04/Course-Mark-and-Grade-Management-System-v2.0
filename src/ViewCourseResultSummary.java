@@ -7,8 +7,9 @@ public class ViewCourseResultSummary {
 
     public static void viewSummary(String lecturerWorkId, Scanner scanner) {
 
-        System.out.println("\n\n--------------------------------------------------------------------------");
-        System.out.println("\n                       COURSE RESULTS SUMMARY                             ");
+        System.out.println("--------------------------------------------------------------------------");
+        System.out.println("                       COURSE RESULTS SUMMARY                             ");
+        System.out.println("--------------------------------------------------------------------------");
         
         //Use class AssignedCourse to get List of the courses
         List<String> myCourses = AssignedCourse.displayAndGetCourses(lecturerWorkId);

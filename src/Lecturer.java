@@ -30,29 +30,22 @@ public class Lecturer {
             System.out.print("Enter your choice (1-5): ");
             
             String choice = scanner.nextLine();
-            
+            Main.clearScreen();
+
             switch (choice) {
                 case "1":
-                    System.out.println("\n=== View Assigned Courses ===");
-                    ViewAssignedCourse.display(workId);
-                    System.out.println("Would display all courses assigned to this lecturer.");
+                    ViewAssignedCourse.displayAndGetCourses(workId);
                     break;
                 case "2":
-                    System.out.println("\n=== View Students in a Course ===");
                     ViewStudentInCourse.view(workId, scanner);
-                    System.out.println("Would display all students registered for a selected course.");
                     break;
                 case "3":
-                    System.out.println("\n=== Update Student Marks ===");
                     UpdateMarks.updateStudentMark(workId, scanner);
                     break;
                 case "4":
-                    System.out.println("\n=== View Course Results Summary ===");
                     ViewCourseResultSummary.viewSummary(workId, scanner);
-                    System.out.println("Would display summary statistics for a course.");
                     break;
                 case "5":
-                    Main.clearScreen();
                     loggedIn = false;
                     break;
                 default:
