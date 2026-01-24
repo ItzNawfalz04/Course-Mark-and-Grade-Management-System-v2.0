@@ -10,9 +10,11 @@ public class AssignedCourse {
         
         List<String> foundCourses = new ArrayList<>(); // List to store course codes
 
-        System.out.println("\n\n--------------------------------------------------------------------------");
-        System.out.println("\n                          LIST OF ASSIGNED COURSES                        ");
-        System.out.println("\n--------------------------------------------------------------------------");
+        System.out.println("==========================================================================\n");
+        System.out.println("                  COURSE MARK & GRADE MANAGEMENT SYSTEM");
+        System.out.println("\n==========================================================================");
+        System.out.println(">> Lecturer Menu >> View Assigned Course");
+        System.out.println("--------------------------------------------------------------------------\n");
 
         // 1. PREPARE COURSE DATA
         Map<String, String[]> courseDetails = new HashMap<>();
@@ -51,7 +53,7 @@ public class AssignedCourse {
 
                         System.out.printf("%-5d %-15s %-40s %-10s%n", count++, assignedCode, name, credit);
                         
-                        // IMPORTANT: Add code to the list
+                        // Add code to the list
                         foundCourses.add(assignedCode);
                     }
                 }
@@ -62,11 +64,9 @@ public class AssignedCourse {
 
         if (foundCourses.isEmpty()) {
             System.out.println("No courses assigned to you yet.");
-        } else {
-            System.out.println("--------------------------------------------------------------------------");
-            System.out.println("0.     Back"); // Manual Back option
         }
-        
+
+        System.out.println("--------------------------------------------------------------------------");
         return foundCourses; // RETURN LIST TO CALLER
     }
 }

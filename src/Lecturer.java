@@ -13,20 +13,22 @@ public class Lecturer {
         boolean loggedIn = true;
         
         while (loggedIn) {
-            System.out.println("===================================================\n" +
-                               "                  LECTURER MENU\n" + 
-                               "===================================================");
-            System.out.println("\n[LECTURER INFORMATION]\n");
+            System.out.println("====================================================\n");
+            System.out.println("       COURSE MARK & GRADE MANAGEMENT SYSTEM");
+            System.out.println("\n====================================================");
+            System.out.println(">> Lecturer Menu");
+            System.out.println("----------------------------------------------------\n");
+            System.out.println("[LECTURER INFORMATION]");
             System.out.println("Lecturer Name\t: " + name);
             System.out.println("Work ID\t\t: " + workId);
             System.out.println("User Type\t: Lecturer");
+            System.out.println("\n---------------------------------------------------\n");
+            System.out.println("[1] View Assigned Courses");
+            System.out.println("[2] View Students in a Course");
+            System.out.println("[3] Update Student Marks");
+            System.out.println("[4] View Course Results Summary");
+            System.out.println("[5] Logout");
             System.out.println("\n---------------------------------------------------");
-            System.out.println("1. View Assigned Courses");
-            System.out.println("2. View Students in a Course");
-            System.out.println("3. Update Student Marks");
-            System.out.println("4. View Course Results Summary");
-            System.out.println("5. Logout");
-            System.out.println("---------------------------------------------------");
             System.out.print("Enter your choice (1-5): ");
             
             String choice = scanner.nextLine();
@@ -34,16 +36,16 @@ public class Lecturer {
 
             switch (choice) {
                 case "1":
-                    ViewAssignedCourse.displayAndGetCourses(workId);
+                    AssignedCourse.displayAndGetCourses(workId);
                     break;
                 case "2":
-                    ViewStudentInCourse.view(workId, scanner);
+                    StudentInCourse.view(workId, scanner);
                     break;
                 case "3":
                     UpdateMarks.updateStudentMark(workId, scanner);
                     break;
                 case "4":
-                    ViewCourseResultSummary.viewSummary(workId, scanner);
+                    CourseResultSummary.viewSummary(workId, scanner);
                     break;
                 case "5":
                     loggedIn = false;
