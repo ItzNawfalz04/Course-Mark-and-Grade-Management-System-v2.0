@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Scanner;
 import student.Student;
+import lecturer.Lecturer;
+import admin.Admin;
+
 
 public class Main {
 
@@ -94,8 +97,8 @@ public class Main {
             scanner.nextLine();
             clearScreen();
 
-            // Lecturer lecturer = new Lecturer(currentUserFullName, currentUserId);
-            // lecturer.showMenu(scanner);
+            Lecturer lecturer = new Lecturer(currentUserFullName, currentUserId);
+            lecturer.showMenu(scanner);
 
             System.out.println("Lecturer module not connected yet (package not set in this step).");
             System.out.println("Press Enter to continue...");
@@ -112,8 +115,8 @@ public class Main {
             scanner.nextLine();
             clearScreen();
 
-            // Admin admin = new Admin(currentUserFullName, currentUserId);
-            // admin.showMenu(scanner);
+            Admin admin = new Admin(currentUserFullName, currentUserId);
+            admin.showMenu(scanner);
 
             System.out.println("Admin module not connected yet (package not set in this step).");
             System.out.println("Press Enter to continue...");
