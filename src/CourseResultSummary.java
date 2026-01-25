@@ -6,9 +6,8 @@ public class CourseResultSummary {
     private static final String COURSE_MARKS_PATH = "csv_database/CourseMarks/";
 
     public static void viewSummary(String lecturerWorkId, Scanner scanner) {
-
         
-        //Use class AssignedCourse to get List of the courses
+        // Retrieve the list of courses (ensure AssignedCourse class is correct)
         List<String> myCourses = AssignedCourse.displayAndGetCourses(lecturerWorkId);
 
         if (myCourses.isEmpty()) return;
@@ -30,49 +29,63 @@ public class CourseResultSummary {
 
         String selectedCourseCode = myCourses.get(choice - 1);
         
-        // Processing the mark
+        // Processing the mark file
         File courseFile = new File(COURSE_MARKS_PATH + selectedCourseCode + ".csv");
         Main.clearScreen();
+        
         if (!courseFile.exists()) {
             System.out.println("No data found for " + selectedCourseCode);
             return;
         }
 
-        // Initialization statistic variable
+        // Initialize statistics variables
         double highest = 0.0;
-        double lowest = 100.0; // max value
+        double lowest = 100.0; // Set to max possible value initially
         double grandTotal = 0.0;
         int studentCount = 0;
         
-        // To store topscorer mark
+        // List to store top scorer(s) matric numbers
         List<String> topScorers = new ArrayList<>(); 
 
         try (BufferedReader br = new BufferedReader(new FileReader(courseFile))) {
             System.out.println("==========================================================================\n");
-            System.out.println("                  COURSE MARK & GRADE MANAGEMENT SYSTEM");
+            System.out.println("                    COURSE MARK & GRADE MANAGEMENT SYSTEM");
             System.out.println("\n==========================================================================");
             System.out.println(">> Lecturer Menu >> View Course Result Summary");
-            System.out.println("--------------------------------------------------------------------------\n");
+            System.out.println("--------------------------------------------------------------------------");
+            System.out.println(" Course Code : " + selectedCourseCode);
+            System.out.println("--------------------------------------------------------------------------");
+            
+            // Student Table Header
+            System.out.printf("%-5s %-15s %-10s %-10s %-10s %-10s%n", 
+                    "No.", "Matric No", "CW", "FE", "Total", "Grade");
+            System.out.println("--------------------------------------------------------------------------");
+
             String line;
             while ((line = br.readLine()) != null) {
+                // Handle BOM (Byte Order Mark) if present
                 if (line.startsWith("\uFEFF")) line = line.substring(1);
+                
                 String[] data = line.split(",");
 
-                // Format: MatricNo, CW, FE
+                // CSV Format: MatricNo, CW, FE
                 if (data.length >= 3) {
                     try {
                         String matric = data[0].trim();
                         double cw = Double.parseDouble(data[1].trim());
                         double fe = Double.parseDouble(data[2].trim());
                         double totalScore = cw + fe;
+                        
+                        // Calculate Grade based on total score
+                        String grade = calculateGrade(totalScore);
 
-                        // Update Logic
+                        // Update Statistics Logic
                         if (totalScore > highest) {
                             highest = totalScore;
-                            topScorers.clear(); // Reset list to add new top scorer
+                            topScorers.clear(); // Reset list if a new highest is found
                             topScorers.add(matric);
                         } else if (totalScore == highest) {
-                            topScorers.add(matric); // Add if have same score with the new highest found
+                            topScorers.add(matric); // Add to list if score matches current highest
                         }
 
                         if (totalScore < lowest) {
@@ -82,17 +95,23 @@ public class CourseResultSummary {
                         grandTotal += totalScore;
                         studentCount++;
 
+                        // Display the student row immediately
+                        System.out.printf("%-5d %-15s %-10.1f %-10.1f %-10.1f %-10s%n", 
+                                studentCount, matric, cw, fe, totalScore, grade);
+
                     } catch (NumberFormatException e) {
-                        continue;
+                        continue; // Skip invalid lines
                     }
                 }
             }
+            System.out.println("--------------------------------------------------------------------------");
+
         } catch (IOException e) {
             System.out.println("Error reading file.");
             return;
         }
 
-        // Print the result
+        // Display Statistics Summary below the table
         if (studentCount == 0) {
             System.out.println("\nNo student marks recorded yet.");
             return;
@@ -100,7 +119,7 @@ public class CourseResultSummary {
 
         double average = grandTotal / studentCount;
 
-        System.out.println(" STATISTICS FOR " + selectedCourseCode);
+        System.out.println("\n STATISTICS SUMMARY");
         System.out.println("--------------------------------------------------------------------------");
         System.out.printf("%-25s : %d%n", "Total Students Graded", studentCount);
         System.out.printf("%-25s : %.2f%n", "Highest Score", highest);
@@ -110,5 +129,23 @@ public class CourseResultSummary {
         System.out.print("Top Scorer(s)             : ");
         System.out.println(String.join(", ", topScorers));
         System.out.println("--------------------------------------------------------------------------");
+        System.out.println("\nPress Enter to return...");
+        scanner.nextLine();
+    }
+
+    // Helper method to calculate Grade (UTM Standard)
+    private static String calculateGrade(double totalScore) {
+        if (totalScore >= 90) return "A+";
+        else if (totalScore >= 80) return "A";
+        else if (totalScore >= 75) return "A-";
+        else if (totalScore >= 70) return "B+";
+        else if (totalScore >= 65) return "B";
+        else if (totalScore >= 60) return "B-";
+        else if (totalScore >= 55) return "C+";
+        else if (totalScore >= 50) return "C";
+        else if (totalScore >= 45) return "D+";
+        else if (totalScore >= 40) return "D";
+        else if (totalScore >= 30) return "E";
+        else return "F";
     }
 }
