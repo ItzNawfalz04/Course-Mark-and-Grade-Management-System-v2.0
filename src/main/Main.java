@@ -1,13 +1,13 @@
 package main;
 
+import admin.Admin;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Scanner;
-import student.Student;
 import lecturer.Lecturer;
-import admin.Admin;
+import student.Student;
 
 
 public class Main {
@@ -99,11 +99,6 @@ public class Main {
 
             Lecturer lecturer = new Lecturer(currentUserFullName, currentUserId);
             lecturer.showMenu(scanner);
-
-            System.out.println("Lecturer module not connected yet (package not set in this step).");
-            System.out.println("Press Enter to continue...");
-            scanner.nextLine();
-            clearScreen();
             return;
         }
 
@@ -117,11 +112,6 @@ public class Main {
 
             Admin admin = new Admin(currentUserFullName, currentUserId);
             admin.showMenu(scanner);
-
-            System.out.println("Admin module not connected yet (package not set in this step).");
-            System.out.println("Press Enter to continue...");
-            scanner.nextLine();
-            clearScreen();
             return;
         }
 
