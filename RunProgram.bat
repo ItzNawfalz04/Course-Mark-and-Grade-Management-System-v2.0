@@ -8,7 +8,7 @@ REM
 if not exist "bin" mkdir "bin"
 
 REM 
-javac -d "bin" src\main\*.java src\student\*.java src\lecturer\*.java src\admin\*.java
+javac -d "bin" src\Main\*.java src\Student\*.java src\Lecturer\*.java src\Admin\*.java
 if errorlevel 1 (
     echo Compilation failed.
     pause
@@ -16,5 +16,5 @@ if errorlevel 1 (
 )
 
 REM 
-java -cp "bin" main.Main
+java -cp "bin" Main.Main
 pause

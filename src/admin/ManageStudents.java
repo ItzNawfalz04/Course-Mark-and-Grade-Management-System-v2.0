@@ -1,11 +1,11 @@
-package admin;
+package Admin;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
-import main.Main;
+import Main.Main;
 
 public class ManageStudents {
 
@@ -17,9 +17,11 @@ public class ManageStudents {
         while (running) {
             Main.clearScreen();
 
-            System.out.println("=======================================================\n");
-            System.out.println("         COURSE MARK & GRADE MANAGEMENT SYSTEM");
-            System.out.println("\n=======================================================");
+            System.out.println("===============================================================");
+            System.out.println("             COURSE MARK & GRADE MANAGEMENT SYSTEM");
+            System.out.println("                 --- FACULTY OF COMPUTING ---");
+            System.out.println("              UNIVERSITI TEKNOLOGI MALAYSIA (UTM)");
+            System.out.println("===============================================================");
             System.out.println(">> Admin Menu >> Manage Students");
             System.out.println("-------------------------------------------------------\n");
             System.out.println("[1] Add New Student");
