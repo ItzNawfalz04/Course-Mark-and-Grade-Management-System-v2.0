@@ -96,7 +96,7 @@ Course-Mark-and-Grade-Management-System
 
 | Resource            | Link |
 |---------------------|------|
-| Demonstration Video | [View Demo Video ↗](link) |
+| Demonstration Video | [View Demo Video ↗](www.youtube.com/watch?v=T4Ig60l8vaY) |
 | GitHub Repository   | [View GitHub Repository ↗](https://github.com/ItzNawfalz04/Course-Mark-and-Grade-Management-System) |
 
 
