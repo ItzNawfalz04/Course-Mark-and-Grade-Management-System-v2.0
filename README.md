@@ -39,15 +39,32 @@ The application reads required data from **CSV files**, loads them into correspo
 
 
 
-## 🛠️ Technologies Used
+## ▶️ How to Run the Program
 
-- **Programming Language:** Java  
-- **Data Storage:** CSV Files  
-- **Concepts Applied:**  
-  - Object-Oriented Programming (OOP)  
-  - Inheritance  
-  - Aggregation & Composition  
-  - Encapsulation & Modularity  
+1. Clone or download this repository.
+2. Navigate to the project root directory.
+3. Double-click or run the following file:
+
+```text
+RunProgram.bat
+````
+
+The program will start automatically using the precompiled files.
+
+> ⚠️ **Note:** Ensure Java is installed and added to your system PATH before running the program.
+
+**Project Structure:**
+
+```text
+Course-Mark-and-Grade-Management-System
+├── 📁.vscode
+├── 📁bin
+├── 📁csv_database
+├── 📁src
+├── 📄LICENSE.md
+├── 📄README.md
+└── 📄RunProgram.bat <-- Run this program
+```
 
 
 
