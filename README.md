@@ -56,7 +56,7 @@ RunProgram.bat
 
 The program will start automatically using the precompiled files.
 
-> ⚠️ **Note:** Ensure Java is installed and added to your system PATH before running the program.
+> ⚠️ **Note:** Ensure Java is installed and added to your system before running the program.
 
 **Project Structure:**
 
